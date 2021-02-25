@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seu.qz.qzserver.mybatismapper.ProvideOrderMapper">
+
+    <select id="getConfirmedCounts" resultType="Integer">
+         select count(*) from  provideorders where order_confirmed = 3
+    </select>
+
+    <select id="getOrderById" resultType="seu.qz.qzserver.entity.ProvideOrder">
+        select * from provideorders where order_id = #{id}
+    </select>
+
+    <select id="getAllOriginalOrders" resultType="seu.qz.qzserver.entity.ProvideOrder">
+        select * from provideorders where order_confirmed = 0
+    </select>
+
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="order_id" parameterType="seu.qz.qzserver.entity.ProvideOrder">
+        insert into provideorders(device_id, user_id, display_price, rentTime_begin, rentTime_end, order_confirmed, saler_id,
+        orderForRelatedUser, orderForRelatedSaler, factory_name, user_name, device_orderForSaler, order_placed, placed_orderNumber,
+        device_address, material_explanation, extra_explanation, saler_name, materialName, materialType)
+        values(#{device_id}, #{user_id}, #{display_price}, #{rentTime_begin}, #{rentTime_end}, #{order_confirmed}, #{saler_id},
+         #{orderForRelatedUser}, #{orderForRelatedSaler}, #{factory_name}, #{user_name}, #{device_orderForSaler}, #{order_placed},
+         #{placed_orderNumber}, #{device_address}, #{material_explanation}, #{extra_explanation}, #{saler_name}, #{materialName}, #{materialType})
+    </insert>
+
+    <delete id="deleteOrderById">
+        delete  from provideorders where order_id = #{id}
+    </delete>
+
+    <update id="updateOrder">
+        update provideorders
+        set device_id = #{device_id}, user_id = #{user_id}, display_price = #{display_price}, rentTime_begin = #{rentTime_begin},
+        rentTime_end = #{rentTime_end}, order_confirmed = #{order_confirmed}, saler_id = #{saler_id}, orderForRelatedUser = #{orderForRelatedUser},
+         orderForRelatedSaler = #{orderForRelatedSaler}, factory_name = #{factory_name}, user_name = #{user_name},
+          device_orderForSaler = #{device_orderForSaler}, order_placed = #{order_placed}, placed_orderNumber = #{placed_orderNumber},
+         device_address = #{device_address}, material_explanation = #{material_explanation}, extra_explanation = #{extra_explanation},
+          saler_name = #{saler_name}, materialName = #{materialName}, materialType = #{materialType} where order_id = #{order_id}
+    </update>
+
+    <select id="getOrdersByNickName" resultType="seu.qz.qzserver.entity.ProvideOrder">
+        select * from provideorders where user_name = #{user_nickName}
+    </select>
+
+    <select id="getOrdersBySaler" resultType="seu.qz.qzserver.entity.ProvideOrder">
+        select * from provideorders where saler_name = #{saler_name}
+    </select>
+
+</mapper>

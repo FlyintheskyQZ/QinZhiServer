@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seu.qz.qzserver.mybatismapper.ExperimentResultMapper">
+
+    <select id="getExperimentResultById" resultType="seu.qz.qzserver.entity.ExperimentResult">
+        select * from experimentresults where global_result_id = #{id}
+    </select>
+
+    <insert id="addExperimentResult" parameterType="seu.qz.qzserver.entity.ExperimentResult">
+        insert into experimentresults(factory_result_id, device_id, user_id, order_id, material_id, o_cons_string,
+         b_times_string, b_lengths_string, b_judge_string, calculate_k, step_value, variance, step_isSuitable, final_LOI,
+         light_way, part1_length)
+        values(#{factory_result_id}, #{device_id}, #{user_id}, #{order_id}, #{material_id}, #{o_cons_string},
+        #{b_times_string}, #{b_lengths_string}, #{b_judge_string}, #{calculate_k}, #{step_value}, #{variance}, #{step_isSuitable},
+         #{final_LOI}, #{light_way}, #{part1_length})
+    </insert>
+
+    <delete id="deleteExperimentResultById">
+        delete  from experimentresults where global_result_id = #{id}
+    </delete>
+
+    <update id="updateExperimentResult">
+        update experimentresults
+        set factory_result_id = #{factory_result_id}, device_id = #{device_id}, user_id = #{user_id}, order_id = #{order_id},
+        material_id = #{material_id}, o_cons_string = #{o_cons_string}, b_times_string = #{b_times_string}, b_lengths_string = #{b_lengths_string},
+         b_judge_string = #{b_judge_string}, calculate_k = #{calculate_k}, step_value = #{step_value}, variance = #{variance},
+          step_isSuitable = #{step_isSuitable}, final_LOI = #{final_LOI}, light_way = #{light_way}, part1_length = #{part1_length}
+          where global_result_id = #{global_result_id}
+    </update>
+
+</mapper>

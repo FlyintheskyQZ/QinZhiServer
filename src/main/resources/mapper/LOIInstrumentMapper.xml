@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seu.qz.qzserver.mybatismapper.LOIInstrumentMapper">
+
+    <select id="getInstrumentById" resultType="seu.qz.qzserver.entity.LOIInstrument">
+        select * from loiinstruments where device_id = #{id}
+    </select>
+
+    <select id="getInstrumentsById" resultType="seu.qz.qzserver.entity.LOIInstrument">
+        select * from loiinstruments where related_user_id = #{saler_id}
+    </select>
+
+    <select id="getAllInstruments" resultType="seu.qz.qzserver.entity.LOIInstrument">
+        select * from loiinstruments
+    </select>
+
+    <insert id="addInstrument" useGeneratedKeys="true" keyProperty="device_id" parameterType="seu.qz.qzserver.entity.LOIInstrument">
+        insert into loiinstruments(factory_name, factory_address, factory_longitude, factory_latitude, factory_phoneNumber,
+                                    extra_description, p_orders_string, f_orders_string, related_user_id, orderForRelatedSaler)
+        values(#{factory_name}, #{factory_address}, #{factory_longitude}, #{factory_latitude}, #{factory_phoneNumber},
+                #{extra_description}, #{p_orders_string}, #{f_orders_string}, #{related_user_id}, #{orderForRelatedSaler})
+    </insert>
+
+    <delete id="deleteInstrumentById">
+        delete  from loiinstruments where device_id = #{id}
+    </delete>
+
+    <update id="updateInstrument">
+        update loiinstruments
+        set factory_name = #{factory_name}, factory_address = #{factory_address}, factory_longitude = #{factory_longitude},
+        factory_latitude = #{factory_latitude},factory_phoneNumber = #{factory_phoneNumber},
+        extra_description = #{extra_description}, p_orders_string = #{p_orders_string}, f_orders_string = #{f_orders_string},
+        related_user_id = #{related_user_id}, orderForRelatedSaler = #{orderForRelatedSaler} where device_id = #{device_id}
+    </update>
+
+</mapper>

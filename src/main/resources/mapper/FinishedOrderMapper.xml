@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seu.qz.qzserver.mybatismapper.FinishedOrderMapper">
+
+    <select id="getCounts" resultType="Integer">
+         select count(*) from  finishedorders
+    </select>
+
+    <select id="getOrderById" resultType="seu.qz.qzserver.entity.FinishedOrder">
+        select * from finishedorders where order_id = #{id}
+    </select>
+
+    <select id="getOrdersByUserId" resultType="seu.qz.qzserver.entity.FinishedOrder">
+        select * from finishedorders where user_id = #{user_id}
+    </select>
+
+    <select id="getOrdersByNickName" resultType="seu.qz.qzserver.entity.FinishedOrder">
+        select * from finishedorders where user_name = #{user_nickName}
+    </select>
+
+    <select id="getOrdersBySalerName" resultType="seu.qz.qzserver.entity.FinishedOrder">
+        select * from finishedorders where saler_name = #{saler_name}
+    </select>
+
+    <insert id="addOrder" parameterType="seu.qz.qzserver.entity.FinishedOrder">
+        insert into finishedorders(device_id, user_id, deal_price, rentTime_begin, rentTime_end, operator_name, result_id,
+         saler_id, orderForRelatedUser, orderForRelatedSaler, factory_name, user_name, device_orderForSaler, order_placed,
+         materialName, materialType, result_data, placed_orderNumber, device_address, extra_explanation)
+        values(#{device_id}, #{user_id}, #{deal_price}, #{rentTime_begin}, #{rentTime_end}, #{operator_name}, #{result_id},
+         #{saler_id}, #{orderForRelatedUser}, #{orderForRelatedSaler}, #{factory_name}, #{user_name}, #{device_orderForSaler},
+          #{order_placed}, #{materialName}, #{materialType}, #{result_data}, #{placed_orderNumber}, #{device_address},
+          #{extra_explanation})
+    </insert>
+
+    <delete id="deleteOrderById">
+        delete  from finishedorders where order_id = #{id}
+    </delete>
+
+    <update id="updateOrder">
+        update finishedorders
+        set device_id = #{device_id}, user_id = #{user_id}, deal_price = #{deal_price}, rentTime_begin = #{rentTime_begin},
+        rentTime_end = #{rentTime_end}, operator_name = #{operator_name}, result_id = #{result_id}, saler_id = #{saler_id},
+        orderForRelatedUser = #{orderForRelatedUser}, orderForRelatedSaler = #{orderForRelatedSaler}, factory_name = #{factory_name},
+        user_name = #{user_name}, device_orderForSaler = #{device_orderForSaler}, order_placed = #{order_placed}, materialName = {materialName},
+        materialType = #{materialType}, result_data = #{result_data}, placed_orderNumber = #{placed_orderNumber},
+        device_address = #{device_address}, extra_explanation = #{extra_explanation} where order_id = #{order_id}
+    </update>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <settings>
+        <!--关闭mybatis的一级和二级缓存-->
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="localCacheScope" value="STATEMENT"/>
+    </settings>
+    
+    <mappers>
+<!--   mapper resource的路径从classpath下开始寻找     -->
+        <mapper resource="mapper\AppCustomerMapper.xml"/>
+        <mapper resource="mapper\LOIInstrumentMapper.xml"/>
+        <mapper resource="mapper\FinishedOrderMapper.xml"/>
+        <mapper resource="mapper\ExperimentResultMapper.xml"/>
+        <mapper resource="mapper\ProvideOrderMapper.xml"/>
+        <mapper resource="mapper\MaterialSpeciesMapper.xml"/>
+    </mappers>
+</configuration>
