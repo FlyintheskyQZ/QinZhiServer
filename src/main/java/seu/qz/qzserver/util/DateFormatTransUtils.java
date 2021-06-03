@@ -11,8 +11,12 @@ import java.util.Date;
 public class DateFormatTransUtils {
 
     public Calendar calendar;
-    private static SimpleDateFormat shortDateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm");
-    private static SimpleDateFormat ChineseFormat = new SimpleDateFormat("yyyy年MM月dd日hh时mm分");
+    public static final int TYPE_ORIGINAL = 0;
+    public static final int TYPE_CHINESE = 1;
+    public static final int TYPE_SHORT = 2;
+    private static SimpleDateFormat originalDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat shortDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static SimpleDateFormat ChineseFormat = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
 
     public DateFormatTransUtils() {
         this.calendar = Calendar.getInstance();
@@ -35,6 +39,30 @@ public class DateFormatTransUtils {
         }
         calendar.set(temps[0], temps[1], temps[2], temps[3], temps[4], temps[5]);
         return calendar.getTime();
+    }
+
+    public static Date formDateByString(String time, int Type){
+        if(time == null || time.isEmpty()){
+            return new Date(System.currentTimeMillis());
+        }
+        Date date = null;
+        try{
+            switch (Type){
+                case TYPE_ORIGINAL:
+                    date = originalDateFormat.parse(time);
+                    break;
+                case TYPE_CHINESE:
+                    date = ChineseFormat.parse(time);
+                    break;
+                case TYPE_SHORT:
+                    date = shortDateFormat.parse(time);
+                default:break;
+            }
+            return date;
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Date(System.currentTimeMillis());
+        }
     }
 
     public static String getStringShort(Date date){

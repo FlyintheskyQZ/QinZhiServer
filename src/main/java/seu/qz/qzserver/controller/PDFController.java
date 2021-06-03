@@ -161,7 +161,7 @@ public class PDFController {
                     buffer = new byte[bufLen];
                 }
                 //放慢下载速度，调试暂停和继续按键
-                //Thread.sleep(50);
+                Thread.sleep(50);
             }
             response.flushBuffer();
         } catch (Exception e) {
@@ -186,4 +186,5 @@ public class PDFController {
             }
         }
     }
+
 }

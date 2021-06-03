@@ -118,6 +118,7 @@ public class OrderController {
     @RequestMapping("/getProvideOrderById")
     public ProvideOrder getProvideOrderById(String order_id){
         ProvideOrder order = provideOrderService.getOrderById(Integer.valueOf(order_id));
+        System.out.println(order.getRentTime_end().toString());
         if(order == null){
             return null;
         }else {
@@ -136,7 +137,6 @@ public class OrderController {
             System.out.println("Failed");
             return "Failed";
         }
-
     }
 
 
@@ -156,7 +156,6 @@ public class OrderController {
             System.out.println("Failed");
             return "Failed";
         }
-
     }
 
     /**

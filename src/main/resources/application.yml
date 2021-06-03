@@ -5,6 +5,7 @@
 
 
 
+
 #配置过滤器的相关参数
 filter:
   exclusion: "*.js,*.css,/druid/*"
@@ -41,6 +42,7 @@ spring:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
     #配置邮件发送功能
+
     #  spring.mail.host=smtp.qq.com
     #  spring.mail.port=587
     #  spring.mail.username=1510161612@qq.com
@@ -52,13 +54,24 @@ spring:
     host: smtp.qq.com
     port: 587
     username: 846047475@qq.com
-    password: gcpcgjsmywarbdaj
+    password: bqilqhblhdlvbbeb
     default-encoding: UTF-8
     properties:
       mail.smtp.socketFactoryClass: javax.net.ssl.SSLSocketFactory
       mail.smtp.debug: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
 
-
+  #  #配置模板引擎
+#  mvc:
+#    view:
+#      prefix: classpath:/templates/
+#      suffix: .html
+#      #当static文件夹下还有文件夹时，访问时，需要该配置，否则访问不到
+#    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/
 
 #   程序启动自动创建数据表
 #   schema:
